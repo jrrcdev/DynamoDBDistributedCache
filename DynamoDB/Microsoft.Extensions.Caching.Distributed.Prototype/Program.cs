@@ -53,8 +53,8 @@ namespace Microsoft.Extensions.Caching.Distributed.DynamoDb.Prototype
         static void StartUp()
         {
             //Set up the variables
-            var accessKey = "AKIAIES7GXUKBWV5YQQA";
-            var accessSecret = "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";
+            var accessKey = "";
+            var accessSecret = "";
 
             var region = RegionEndpoint.GetBySystemName("eu-west-2");
             var encoding = Encoding.GetEncoding("us-ascii");
