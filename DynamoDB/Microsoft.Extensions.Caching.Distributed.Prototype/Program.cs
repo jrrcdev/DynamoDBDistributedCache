@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Globalization;
 using System.Text;
-using System.Threading;
 using Amazon;
 using Microsoft.Extensions.Caching.Distributed.DynamoDb.Prototype.Repository;
 using Microsoft.Extensions.Caching.Distributed.DynamoDb.Settings;
