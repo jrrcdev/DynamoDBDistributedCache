@@ -52,13 +52,51 @@ serviceCollection.Add(new ServiceDescriptor(typeof(ISampleRepository), typeof(Sa
 _serviceProvider = serviceCollection.BuildServiceProvider();
 
 //Get the cache instance
- var _distributedCache = _serviceProvider.GetService<IDistributedCache>();
+var _distributedCache = _serviceProvider.GetService<IDistributedCache>();
  
- //Save to cache
- _distributedCache.SetObject(model.Id, model);
+//Save to cache
+_distributedCache.SetObject(model.Id, model);
  
- //Read from cache
- _distributedCache.GetObject<SampleDataModel>(id); 
+//Read from cache
+_distributedCache.GetObject<SampleDataModel>(id); 
  
 ```
+
+The above will create a default cache table in DynamoDb and store the information.
+
+If the requirement is there to create custom cache tables then 
+
+```C# 
+//Custom cache table
+
+public class CustomCacheTable : ICacheTable
+{
+    public string CacheId { get; set; }
+    public string Value { get; set; }
+    public long Ttl { get; set; }
+    public CacheOptions CacheOptions { get; set; }
+}
+
+```
+[CustomCacheTable] is your table name. 
+
+Simply create an implementation of "ICacheTable"
+
+Than during registration use the following.
+
+```C# 
+
+serviceCollection.RegisterDynomoDbCacheService<CustomCacheTable>(new DistributedCacheDynamoDbSettings(accessKey, accessSecret, encoding, region));
+
+```
+
+instead of 
+
+```C# 
+
+serviceCollection.RegisterDynomoDbCacheService(new DistributedCacheDynamoDbSettings(accessKey, accessSecret, encoding, region));
+
+```
+
+
 
