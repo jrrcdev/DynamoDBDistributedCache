@@ -4,6 +4,6 @@
     {
         void Save(SampleDataModel model);
 
-        SampleDataModel Get(int id);
+        SampleDataModel Get(string id);
     }
 }

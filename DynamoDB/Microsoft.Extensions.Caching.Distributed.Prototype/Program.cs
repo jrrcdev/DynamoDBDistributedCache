@@ -20,30 +20,28 @@ namespace Microsoft.Extensions.Caching.Distributed.DynamoDb.Prototype
 
         static void Main(string[] args)
         {
+            //Run startup.
             StartUp();
 
+            //Sample data to be stored in cache.
             var someObject = new SampleDataModel
             {
-                Id = 3,
+                Id = Guid.NewGuid().ToString(),
                 FirstName = "Tom",
                 LastName = "Hardy",
-                CompanyName = "Reed on-line"
+                CompanyName = "Microsoft corporation"
             };
 
+            //Get instance of sample repository from IOC
             var repositoryInstance = _serviceProvider.GetService<ISampleRepository>();
 
+            //Call save method. (Saves to cache)
             repositoryInstance.Save(someObject);
 
-            for (var count = 0; count < 1; count++)
-            {
-                var stopwatch =  Stopwatch.StartNew();
+            //Call get method. (Gets from cache)
+            var result = repositoryInstance.Get(someObject.Id);
 
-                var result = repositoryInstance.Get(someObject.Id);
-
-                Console.WriteLine($"{result.FirstName}, {result.LastName} ({stopwatch.ElapsedMilliseconds} ms)");
-
-                stopwatch.Stop();
-            }
+            Console.WriteLine($"{result.FirstName}, {result.LastName}");
 
             Console.ReadLine();
         }
@@ -52,10 +50,10 @@ namespace Microsoft.Extensions.Caching.Distributed.DynamoDb.Prototype
 
         static void StartUp()
         {
-            //Set up the variables
+            //Set up the variables (Load from configuration files)
+            //Sensitive information can be stored in your deployment pipeline.
             var accessKey = "";
             var accessSecret = "";
-
             var region = RegionEndpoint.GetBySystemName("eu-west-2");
             var encoding = Encoding.GetEncoding("us-ascii");
 
@@ -68,6 +66,7 @@ namespace Microsoft.Extensions.Caching.Distributed.DynamoDb.Prototype
             //Register repository
             serviceCollection.Add(new ServiceDescriptor(typeof(ISampleRepository), typeof(SampleRepository), ServiceLifetime.Transient));
 
+            //Initialize the IOC
             _serviceProvider = serviceCollection.BuildServiceProvider();
         }
 
