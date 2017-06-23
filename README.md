@@ -2,6 +2,8 @@
 
 ### Setup.
 
+By as project refference
+
 Add the following nugets:
 
 > * Microsoft.Extensions.DependencyInjection.Abstraction;
@@ -11,7 +13,19 @@ Add the following nugets:
 > * AWSSDK.DynamoDBv2
 > * Newtonsoft.Json
 
-Registering the implementation in the IOC
+By Nuget Package.
+
+https://www.nuget.org/packages/Microsoft.Extensions.Caching.Distributed.DynamoDb/
+
+### Setup debugging
+
+Add http://srv.symbolsource.org/pdb/Public to Debugging => Symbol in visual studio under Debug => Options
+
+Add check "Enable source server support" in Debugging => General in visual studio under Debug => Options
+
+Un check "Enable .net framework source stepping" in Debugging => General in visual studio under Debug => Options
+
+### Registering & using the implementation
 
 ```C# 
 //Set up the variables (Load from configuration files)
