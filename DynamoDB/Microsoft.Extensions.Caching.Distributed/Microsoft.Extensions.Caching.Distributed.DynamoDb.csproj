@@ -10,7 +10,7 @@
     <PackageReleaseNotes>IDistributedCache implementation for DynamoDb</PackageReleaseNotes>
     <Copyright></Copyright>
     <PackageTags>IDistributedCache DynamoDb</PackageTags>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageLicenseUrl>https://opensource.org/licenses/MS-PL</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/rsarangapany/DistributedCache</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rsarangapany/DistributedCache</RepositoryUrl>

@@ -7,11 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Distributed.DynamoDb" Version="1.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Extensions.Caching.Distributed\Microsoft.Extensions.Caching.Distributed.DynamoDb.csproj" />
   </ItemGroup>
 
 </Project>
