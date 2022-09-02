@@ -11,22 +11,22 @@ namespace Microsoft.Extensions.Caching.Distributed.DynamoDb
 {
     public static class Registration
     {
-        public static void RegisterDynomoDbCacheService(this IServiceCollection services, DistributedCacheDynamoDbSettings settings)
+        public static void RegisterDynamoDbCacheService(this IServiceCollection services, DistributedCacheDynamoDbSettings settings)
         {
-            RegisterDynomoDbCacheService<DefaultCacheTable>(services, settings, ServiceLifetime.Scoped);
+            RegisterDynamoDbCacheService<DefaultCacheTable>(services, settings, ServiceLifetime.Scoped);
         }
 
-        public static void RegisterDynomoDbCacheService<T>(this IServiceCollection services, DistributedCacheDynamoDbSettings settings) where T : ICacheTable
+        public static void RegisterDynamoDbCacheService<T>(this IServiceCollection services, DistributedCacheDynamoDbSettings settings) where T : ICacheTable
         {
-            RegisterDynomoDbCacheService<T>(services, settings, ServiceLifetime.Scoped);
+            RegisterDynamoDbCacheService<T>(services, settings, ServiceLifetime.Scoped);
         }
 
-        public static void RegisterDynomoDbCacheService(this IServiceCollection services, DistributedCacheDynamoDbSettings settings, ServiceLifetime lifeTime)
+        public static void RegisterDynamoDbCacheService(this IServiceCollection services, DistributedCacheDynamoDbSettings settings, ServiceLifetime lifeTime)
         {
-            RegisterDynomoDbCacheService<DefaultCacheTable>(services, settings, lifeTime);
+            RegisterDynamoDbCacheService<DefaultCacheTable>(services, settings, lifeTime);
         }
 
-        public static void RegisterDynomoDbCacheService<T>(this IServiceCollection services, DistributedCacheDynamoDbSettings settings, ServiceLifetime lifeTime) where T : ICacheTable
+        public static void RegisterDynamoDbCacheService<T>(this IServiceCollection services, DistributedCacheDynamoDbSettings settings, ServiceLifetime lifeTime) where T : ICacheTable
         {
             services.Add(new ServiceDescriptor(typeof(ICacheTtlManager), (c) => new CacheTtlManager(settings.DefaultTtl), lifeTime));
 
