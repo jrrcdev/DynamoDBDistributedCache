@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.Caching.Distributed.DynamoDb.Service
         private readonly IDynamoDBContext _dynamoDbContext;
         private readonly ICacheTtlManager _cacheTtlManager;
         private readonly Encoding _encoding;
+
         public DistributedCacheService(IDynamoDBContext dynamoDbContext, ICacheTtlManager cacheTtlManager, IStartUpManager startUpManager, Encoding encoding)
         {
             _dynamoDbContext = dynamoDbContext;
