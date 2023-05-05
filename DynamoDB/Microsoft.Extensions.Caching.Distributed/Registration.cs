@@ -13,12 +13,12 @@ namespace Microsoft.Extensions.Caching.Distributed.DynamoDb
     {
         public static void RegisterDynamoDbCacheService(this IServiceCollection services, DistributedCacheDynamoDbSettings settings)
         {
-            RegisterDynamoDbCacheService<DefaultCacheTable>(services, settings, ServiceLifetime.Scoped);
+            RegisterDynamoDbCacheService<DefaultCacheTable>(services, settings, ServiceLifetime.Singleton);
         }
 
         public static void RegisterDynamoDbCacheService<T>(this IServiceCollection services, DistributedCacheDynamoDbSettings settings) where T : ICacheTable
         {
-            RegisterDynamoDbCacheService<T>(services, settings, ServiceLifetime.Scoped);
+            RegisterDynamoDbCacheService<T>(services, settings, ServiceLifetime.Singleton);
         }
 
         public static void RegisterDynamoDbCacheService(this IServiceCollection services, DistributedCacheDynamoDbSettings settings, ServiceLifetime lifeTime)
